@@ -47,44 +47,22 @@ async def run_async_simple_client(comm, host, port, framer=Framer.SOCKET):
     # print("close connection")
     client.close()
 
-def fechar_terminal():
-    resposta = input("Deseja fechar o terminal? (Y/N): ").strip().lower()
-    if resposta == 'y':
-        return True
-    elif resposta == 'n':
-        return False
-    else:
-        print("Opção inválida! Por favor, insira 'Y' para sim ou 'N' para não.")
-        return fechar_terminal()
-    
-
 if __name__ == "__main__":
     
-    IP = input("Digite o IP do dispositivo: ")
-    Coil = int(input("Digite o registrador COIL a ser lido: "))
-    HR = int(input("Digite o holding register a ser lido: "))
+    IP = input("Enter the device IP: ")
+    Coil = int(input("Enter the COIL register to be read: "))
+    HR = int(input("Enter the holding register to be read: "))
 
     while True:
         asyncio.run(
         run_async_simple_client("tcp", IP, 502)
         )
-        resposta = input("Deseja fechar o terminal? (Y/N): ").strip().lower()
+        resposta = input("Do you want to close the terminal? (Y/N): ").strip().lower()
         if resposta == 'y':
-            print("Fechando o terminal...")
-            # Coloque aqui qualquer código que você deseja executar antes de fechar o terminal
-            sys.exit()  # Fecha o terminal
+            print("Closing the terminal...")
+            sys.exit()  # Close the terminal
         elif resposta == 'n':
-            print("Continuando a execução do programa...")
-            # Coloque aqui qualquer código que você deseja executar se o terminal não for fechado
+            print("Continuing program execution...")
         else:
-            print("Opção inválida! Por favor, insira 'Y' para sim ou 'N' para não.")
-
-    fechar_terminal()
-
-
-
-
-
-
-
+            print("Invalid option! Please enter 'Y' for yes or 'N' for no.")
 
